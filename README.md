@@ -1,1 +1,1 @@
-# Java-AppProg-SMP-2020
+# Java AppProg SMP 2020
