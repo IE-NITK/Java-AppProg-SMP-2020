@@ -37,7 +37,7 @@ cd Task-1
 mkdir Name_Surname
 cd Name_Surname
 ```
-9. Using the File Explorer, add the file(s) and/or folder(s) relevant to Task-1 inside the above Name_Surname folder.
+9. Using the File Explorer, go inside This PC -> Documents -> NetBeansProjects and copy the folder of the project you've created for Task-1 (e.g. ABC Car Rentals). Paste this folder inside the above Name_Surname folder.
 
 10.  Commit the changes to you've made in your local fork by using the following commands:
 ```
