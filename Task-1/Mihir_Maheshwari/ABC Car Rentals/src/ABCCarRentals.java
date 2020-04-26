@@ -56,7 +56,7 @@ public class ABCCarRentals extends javax.swing.JFrame {
         pass = new javax.swing.JPasswordField();
         ExitButton = new javax.swing.JButton();
 
-        Dashboard.setMinimumSize(new java.awt.Dimension(600, 600));
+        Dashboard.setMinimumSize(new java.awt.Dimension(600, 400));
 
         buttonGroup1.add(deluxeRadio);
         deluxeRadio.setText("Deluxe");
@@ -130,39 +130,34 @@ public class ABCCarRentals extends javax.swing.JFrame {
                         .addGroup(DashboardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(semiDeluxeRadio)
                             .addComponent(ordinaryRadio)
-                            .addGroup(DashboardLayout.createSequentialGroup()
-                                .addComponent(deluxeRadio)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)))
+                            .addComponent(deluxeRadio))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(guideCheckbox))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, DashboardLayout.createSequentialGroup()
                         .addGap(57, 57, 57)
                         .addGroup(DashboardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addComponent(totalButton)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel7))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(DashboardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(DashboardLayout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addGap(18, 18, 18)
-                                .addComponent(noOfDaysField, javax.swing.GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DashboardLayout.createSequentialGroup()
-                                .addGroup(DashboardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(totalButton)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jLabel6)
-                                    .addComponent(jLabel7))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 6, Short.MAX_VALUE)
                                 .addGroup(DashboardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addComponent(totalField)
                                     .addComponent(amountField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE)
                                     .addComponent(guideField, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(DashboardLayout.createSequentialGroup()
-                                        .addComponent(clearButton)
-                                        .addGap(24, 24, 24)))))
-                        .addGap(70, 70, 70))
+                                    .addComponent(clearButton, javax.swing.GroupLayout.Alignment.LEADING)))
+                            .addComponent(noOfDaysField, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE))
+                        .addGap(10, 10, 10)
+                        .addComponent(exitButton)
+                        .addGap(7, 7, 7))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, DashboardLayout.createSequentialGroup()
                         .addGap(282, 282, 282)
                         .addComponent(jLabel3)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(exitButton)
-                .addGap(109, 109, 109))
+                .addGap(99, 99, 99))
         );
         DashboardLayout.setVerticalGroup(
             DashboardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -179,18 +174,14 @@ public class ABCCarRentals extends javax.swing.JFrame {
                 .addGroup(DashboardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(noOfDaysField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(DashboardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(DashboardLayout.createSequentialGroup()
-                        .addGap(4, 4, 4)
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(totalButton))
-                    .addGroup(DashboardLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(DashboardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(exitButton)
-                            .addComponent(clearButton))))
-                .addGap(18, 18, 18)
+                .addGap(4, 4, 4)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(DashboardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(totalButton)
+                    .addComponent(clearButton)
+                    .addComponent(exitButton))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(DashboardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(amountField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -202,7 +193,7 @@ public class ABCCarRentals extends javax.swing.JFrame {
                 .addGroup(DashboardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel7)
                     .addComponent(totalField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap(72, Short.MAX_VALUE))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -270,7 +261,7 @@ public class ABCCarRentals extends javax.swing.JFrame {
     private void okButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButtonActionPerformed
         // TODO add your handling code here:
         String password=new String(pass.getPassword());
-        if(password.equals("I m in!"))
+        if(password.equals("I am in!"))
         {
             this.dispose();
             Dashboard.setVisible(true);
@@ -318,6 +309,21 @@ public class ABCCarRentals extends javax.swing.JFrame {
     private void totalButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_totalButtonActionPerformed
         // TODO add your handling code here:
         int days=Integer.parseInt(noOfDaysField.getText());
+        if(days<0)
+        {
+            JOptionPane.showMessageDialog(null,"Please Enter the valid data *_* ");
+            buttonGroup1.clearSelection();
+            deluxeRadio.setSelected(false);
+            semiDeluxeRadio.setSelected(false);
+            ordinaryRadio.setSelected(false);
+            guideCheckbox.setSelected(false);
+            amountField.setText("");
+            guideField.setText("");
+            totalField.setText("");
+            noOfDaysField.setText("");
+        }
+        else
+        {
         int amount=0;
         if(deluxeRadio.isSelected())
         {
@@ -342,6 +348,7 @@ public class ABCCarRentals extends javax.swing.JFrame {
         amountField.setText(amount+"");
         guideField.setText(guideCharges+"");
         totalField.setText(total+"");
+        }
 }//GEN-LAST:event_totalButtonActionPerformed
 
     private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitButtonActionPerformed
