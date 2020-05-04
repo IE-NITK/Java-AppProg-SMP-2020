@@ -50,11 +50,11 @@ git commit -m "Add files for task n"
 ```
 git push origin master
 ```
-13. Go to your online fork on GitHub. You'll be able to see the changes you've made. Now, if you feel like making some more changes to the files you're submitting for Task n, repeat steps 8 to 11. Otherwise, if you're ready to submit the files, click the 'Pull request' button (right under the big green 'Clone or download' button).
+13. Go to your online fork on GitHub. You'll be able to see the changes you've made. Now, if you feel like making some more changes to the files you're submitting for Task n, repeat steps 9 to 11. Otherwise, if you're ready to submit the files, click the 'Pull request' button (right under the big green 'Clone or download' button).
 
 14. On the page which opens next, click the big green 'Create pull request' button. Enter a different title if you don't like the one already present, and click the big green 'Create pull request' button.
 
-15. For further task submissions, repeat steps 7 to 14.
+15. For further task submissions, repeat steps 3, 5 and 7 to 14.
 
 #### Mentors
 ```
