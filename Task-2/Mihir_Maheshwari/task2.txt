@@ -1,0 +1,290 @@
+
+Stations
++------+--------------------+
+| SID | SName |
++------+--------------------+
+| MAJN | Mangaluru Junction |
+| MAQ | Mangaluru Central |
+| SL | Surathkal |
++------+--------------------+
+
+Trains
++-------+-------------------+--------+-------------+
+| TID | TName | Source | Destination |
++-------+-------------------+--------+-------------+
+| 22000 | Mangaluru Express | SL | MAQ |
+| 22001 | Mangaluru Express | MAQ | SL |
+| 22100 | City Local | MAJN | MAQ |
+| 22101 | City Local | MAQ | MAJN |
+| 22200 | City Express | MAJN | MAQ |
+| 22201 | City Express | MAQ | MAJN |
++-------+-------------------+--------+-------------+
+
+Schedule
++-------+-----------+----------+
+| TID | Departure | Arrival |
++-------+-----------+----------+
+| 22000 | 09:00:00 | 09:30:00 |
+| 22000 | 12:00:00 | 12:30:00 |
+| 22001 | 10:30:00 | 11:00:00 |
+| 22001 | 13:30:00 | 14:00:00 |
+| 22100 | 15:00:00 | 15:15:00 |
+| 22101 | 16:45:00 | 17:00:00 |
+| 22200 | 18:00:00 | 18:10:00 |
+| 22201 | 19:50:00 | 20:00:00 |
++-------+-----------+----------+
+
+
+The constraints applied on these tables are as follows:
+1. ‘SID’ of Stations table is a PRIMARY KEY.
+2. ‘SName’ of Stations table is UNIQUE.
+3. ‘TID’ of Trains table is a PRIMARY KEY.
+4. ‘TName’ of Trains table is NOT NULL.
+5. ‘Source’ of Trains table is a FOREIGN KEY which REFERENCES the ‘SID’ of
+Stations table.
+6. ‘Destination’ of Trains table is also a FOREIGN KEY which REFERENCES the ‘SID’
+of Stations table.
+7. ‘TID’ of Schedule table is a FOREIGN KEY which REFERENCES the ‘TID’ of Trains
+table.
+
+
+
+Q1. Write the commands you’ll use to create the above three tables, with appropriate
+datatypes (Use the ‘time’ datatype for Departure and Arrival). Also write the commands
+for inserting the data into these tables. (Write 3 CREATE TABLE commands and 17
+INSERT INTO TABLE commands).
+
+ANSWER:
+
+create table Stations(SID varchar(7) primary key,SName varchar(20) unique);
+create table Trains(TID int primary key,TName varchar(20) not null,Source varchar(7) not null ,Destination varchar(7) not null,foreign key (Source) references stations(SID),foreign key (Destination) references stations(SID));
+create table Schedule(TID int,Departure time,Arrival time,foreign key (TID) references trains(TID));
+
+insert into stations values('MAJN','Mangaluru Junction');
+insert into stations values('MAQ','Mangaluru Central');
+insert into stations values('SL','Surathkal');
+
+insert into trains values(22000,'Mangaluru Express','SL','MAQ');
+insert into trains values(22001,'Mangaluru Express','MAQ','SL');
+insert into trains values(22100,'City Local','MAJN','MAQ');
+insert into trains values(22101,'City Local','MAQ','MAJN');
+insert into trains values(22200,'City Express','MAJN','MAQ');
+insert into trains values(22201,'City Express','MAQ','MAJN');
+
+insert into schedule values(22000,'09:00:00','09:30:00');
+insert into schedule values(22000,'12:00:00','12:30:00');
+insert into schedule values(22001,'10:30:00','11:00:00');
+insert into schedule values(22001,'13:30:00','14:00:00');
+insert into schedule values(22100,'15:00:00','15:15:00');
+insert into schedule values(22101,'16:45:00','17:00:00');
+insert into schedule values(22200,'18:00:00','18:10:00');
+insert into schedule values(22201,'19:50:00','20:00:00');
+
+
+
+Q2. Write a query to display the details (i.e. the TID, TName, Source and Destination) of
+the train with TID 22001.
+
+ANSWER:
+
+select * from trains where tid=22001;
+
+
+Q3. Write a query to display the SName of the stations whose SID begins with ‘MA’.
+
+ANSWER:
+
+select Sname from stations where sid like 'MA%';
++--------------------+
+| Sname              |
++--------------------+
+| Mangaluru Junction |
+| Mangaluru Central  |
++--------------------+
+
+
+Q4. Write a query to display the schedule (i.e. TID, Departure and Arrival) of the trains
+which have departure after 15:30:00 and before 17:00:00.
+
+ANSWER:
+
+ select * from schedule where departure >='15:30:00' and departure<='17:00:00';
++-------+-----------+----------+
+| TID   | Departure | Arrival  |
++-------+-----------+----------+
+| 22101 | 16:45:00  | 17:00:00 |
++-------+-----------+----------+
+
+
+Q5. Write a query to display the TName of the trains whose TName begins with ‘City’ and
+destination is MAQ.
+
+ select tname from trains where tname like 'City%' and destination ='MAQ';
++--------------+
+| tname        |
++--------------+
+| City Local   |
+| City Express |
++--------------+
+
+
+Q6. Write a command to change the ‘SName’ of the station having ‘SID’ as SL to
+‘Surathkal Station’.
+
+ANSWER:
+
+ update staions
+    -> set sname='Surathkal Station'
+    -> where sid='SL';
+
+select * from stations;
++------+--------------------+
+| SID  | SName              |
++------+--------------------+
+| MAQ  | Mangaluru Central  |
+| MAJN | Mangaluru Junction |
+| SL   | Surathkal Station  |
++------+--------------------+
+
+
+Q7. Write a command to add a column ‘District’ to the Stations table, with datatype
+varchar(30).
+
+ANSWER:
+
+ alter table stations
+    -> add District varchar(30);
+select * from stations;
++------+--------------------+----------+
+| SID  | SName              | District |
++------+--------------------+----------+
+| MAJN | Mangaluru Junction | NULL     |
+| MAQ  | Mangaluru Central  | NULL     |
+| SL   | Surathkal Station  | NULL     |
++------+--------------------+----------+
+
+
+Q8. Write a command to add a DEFAULT constraint to the newly added ‘District’ column.
+Set this default to ‘District404’.
+
+ANSWER:
+
+> alter table stations
+    -> alter District set Default 'District404';
+  desc stations;
++----------+-------------+------+-----+-------------+-------+
+| Field    | Type        | Null | Key | Default     | Extra |
++----------+-------------+------+-----+-------------+-------+
+| SID      | varchar(7)  | NO   | PRI | NULL        |       |
+| SName    | varchar(20) | YES  | UNI | NULL        |       |
+| District | varchar(30) | YES  |     | District404 |       |
++----------+-------------+------+-----+-------------+-------+
+
+
+Q9. Write a single command to update the value of District for all stations to ‘Dakshina
+Kannada’. Hint: You don’t always need the WHERE clause :)
+
+ANSWER:
+
+update stations set district='Dakshina Kannada';
+
+select * from stations;
++------+--------------------+------------------+
+| SID  | SName              | District         |
++------+--------------------+------------------+
+| MAJN | Mangaluru Junction | Dakshina Kannada |
+| MAQ  | Mangaluru Central  | Dakshina Kannada |
+| SL   | Surathkal Station  | Dakshina Kannada |
++------+--------------------+------------------+
+
+
+Q10. Write a single command to change both the name of the District column to ‘Dist’ and
+the datatype to char(30).
+
+ANSWER:
+
+ alter table stations
+    -> change District Dict char(30);
+
+desc stations;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| SID   | varchar(7)  | NO   | PRI | NULL    |       |
+| SName | varchar(20) | YES  | UNI | NULL    |       |
+| Dict  | char(30)    | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+
+
+Q11. Write a command to delete the Dist column.
+
+ANSWER:
+
+ alter table stations drop Dict;
+
+desc stations;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| SID   | varchar(7)  | NO   | PRI | NULL    |       |
+| SName | varchar(20) | YES  | UNI | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+
+
+Q12. Write a command to delete the UNIQUE constraint applied on SName in the
+Stations table.
+
+ANSWER:
+
+ alter table stations drop INDEX SName;
+
+desc stations;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| SID   | varchar(7)  | NO   | PRI | NULL    |       |
+| SName | varchar(20) | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+
+
+Q13. Write a command to delete the schedule of the trains having TID as 22000 or
+22001.
+
+ delete from schedule where tid=22000 or  tid=22001;
+
+select * from schedule;
++-------+-----------+----------+
+| TID   | Departure | Arrival  |
++-------+-----------+----------+
+| 22100 | 15:00:00  | 15:15:00 |
+| 22101 | 16:45:00  | 17:00:00 |
+| 22200 | 18:00:00  | 18:10:00 |
+| 22201 | 19:50:00  | 20:00:00 |
++-------+-----------+----------+
+
+
+Q14. Write a query to display the TID of the train having the latest departure time.
+
+ANSWER:
+
+ select tid from schedule where departure=(select max(departure)from schedule);
++-------+
+| tid   |
++-------+
+| 22201 |
++-------+
+
+
+Q15. (Challenge problem) Write a query to display the TName, Source and Destination of
+the train which has the latest departure time. Hint: Nest the query you’ve written for Q9
+inside another query :D
+
+ANSWER:
+
+select tname,source,destination from trains where tid=(select tid from schedule where departure=(select max(departure)from schedule));
++--------------+--------+-------------+
+| tname        | source | destination |
++--------------+--------+-------------+
+| City Express | MAQ    | MAJN        |
++--------------+--------+-------------+
+
