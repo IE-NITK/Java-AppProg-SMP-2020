@@ -86,14 +86,14 @@ A.
 
 Q14. Write a query to display the TID of the train having the latest departure time.
 A.
-	select TID from Schedule where Departure=max(Departure);
+	select TID from Trains where Departure=(select max(Departure) from Schedule);
 
 
 Q15. (Challenge problem) Write a query to display the TName, Source and Destination of
 the train which has the latest departure time. Hint: Nest the query you’ve written for Q9
 inside another query :D
 A.
-	select TName, Source, Destination from Trains where TID in( select TID from Schedule where Departure=max(Departure));
+	select TName, Source, Destination from Trains where TID in(select TID from Trains where Departure=(select max(Departure) from Schedule));
 
 
 
