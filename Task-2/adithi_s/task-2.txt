@@ -91,15 +91,13 @@ Delete from Schedule where TID = 22000 OR TID = 22001;
 
 Q14. Write a query to display the TID of the train having the latest departure time.
 
-select TID from Schedule where Departure = MAX( Departure) ;
+select TID from Schedule where Departure = (select MAX( Departure) from Schedule) ;
 
 
 Q15. (Challenge problem) Write a query to display the TName, Source and Destination of
 the train which has the latest departure time. Hint: Nest the query you’ve written for Q9
 inside another query
 
-select TName, Source , Destination from Trains where TID = ( Select TID from Schedule where Departure = MAX(Departure));
+select TName, Source , Destination from Trains where TID = ( Select TID from Schedule where Departure = (select MAX(Departure) from Schedule));
 
-Q16. train closest to current time
 
-select TID from Schedule where Departure > CURRENT_TIME() limit 1;
