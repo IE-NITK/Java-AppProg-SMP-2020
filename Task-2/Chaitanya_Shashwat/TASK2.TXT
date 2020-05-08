@@ -44,7 +44,7 @@ SELECT * FROM SCHEDULE WHERE DEPARTURE BETWEEN '15:30:00' AND '17:00:00';
 Q5. Write a query to display the TName of the trains whose TName begins with ‘City’ and
 destination is MAQ.
 ANSWER:
-SELECT TNAME FROM TRAINS WHERE TNAME LIKE 'CITY%' AND DESTINATION LIKE 'MAQ';
+SELECT TNAME FROM TRAINS WHERE TNAME LIKE 'CITY%' AND DESTINATION= 'MAQ';
 
 
 Q6. Write a command to change the ‘SName’ of the station having ‘SID’ as SL to
@@ -85,13 +85,13 @@ ALTER TABLE STATIONS DROP COLUMN DIST;
 Q12. Write a command to delete the UNIQUE constraint applied on SName in the
 Stations table.
 ANSWER:
-ALTER TABLE STATIONS DROP CONSTRAINT SName;
+ALTER TABLE STATIONS DROP KEY SName;
 
 
 Q13. Write a command to delete the schedule of the trains having TID as 22000 or
 22001.
 ANSWER:
-DELETE FROM SCHEDULE WHERE TID LIKE '2200%';
+DELETE FROM SCHEDULE WHERE TID IN(22000, 22001);
 
 
 Q14. Write a query to display the TID of the train having the latest departure time.
