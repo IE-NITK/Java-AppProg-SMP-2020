@@ -1,0 +1,103 @@
+Q1. Write the commands you’ll use to create the above three tables, with appropriate
+datatypes (Use the ‘time’ datatype for Departure and Arrival). Also write the commands
+for inserting the data into these tables. (Write 3 CREATE TABLE commands and 17
+INSERT INTO TABLE commands).
+
+create database task2;
+use task2;
+create table Stations (SID varchar(5) PRIMARY KEY, SName varchar(20) UNIQUE);
+create table Trains( TID int PRIMARY KEY, TName varchar(20) NOT NULL, Source varchar(5), Destination varchar(5),foreign key (Source) references Stations(SID), foreign key (Destination) references Stations(SID));
+create table Schedule( TID int , Departure time(7), Arrival time(7), foreign key (TID) references Trains(TID));
+insert into Stations values( 'MAJN', 'Mangaluru Junction');
+insert into Stations values('MAQ','Mangaluru Central');
+insert into Stations values('SL','Surathkal');
+insert into Trains values(22000,'Manguluru Express','SL','MAQ');
+insert into Trains values(22001,'Manguluru Express','MAQ','SL');
+insert into Trains values(22100,'City Local','MAJN','MAQ');
+insert into Trains values(22101,'City Local','MAQ','MAJN');
+insert into Trains values(22200,'City Express','MAJN','MAQ');
+insert into Trains values(22201,'City Express','MAQ','MAJN');
+insert into Schedule values(22000,'09:00:00','09:30:00'); 
+insert into Schedule values(22000,'12:00:00','12:30:00'); 
+insert into Schedule values(22001,'10:30:00','11:00:00'); 
+insert into Schedule values(22001,'13:30:00','14:00:00'); 
+insert into Schedule values(22100,'15:00:00','15:15:00'); 
+insert into Schedule values(22101,'16:45:00','17:00:00'); 
+insert into Schedule values(22200,'18:00:00','18:10:00'); 
+insert into Schedule values(22201,'19:50:00','20:00:00');
+ 
+Q2. Write a query to display the details (i.e. the TID, TName, Source and Destination) of
+the train with TID 22001.
+
+select * from Trains where TID = 22001;
+
+Q3. Write a query to display the SName of the stations whose SID begins with ‘MA’.
+
+select SName from Stations where SID LIKE 'MA%';
+
+Q4. Write a query to display the schedule (i.e. TID, Departure and Arrival) of the trains
+which have departure after 15:30:00 and before 17:00:00.
+
+select * from Schedule where Departure time > '15:30:00' AND Departure time < '17:00:00';
+
+Q5. Write a query to display the TName of the trains whose TName begins with ‘City’ and
+destination is MAQ.
+
+select TName from Trains where TName LIKE 'City%' AND Destination = 'MAQ';
+
+Q6. Write a command to change the ‘SName’ of the station having ‘SID’ as SL to
+‘Surathkal Station’.
+
+Update Stations
+set SName = 'Surathkal Station' where SID = 'SL';
+
+Q7. Write a command to add a column ‘District’ to the Stations table, with datatype
+varchar(30).
+
+Alter table Stations
+add District varchar(30);
+
+Q8. Write a command to add a DEFAULT constraint to the newly added ‘District’ column.
+Set this default to ‘District404’.
+
+Alter table Stations
+Alter District set DEFAULT 'District404';
+
+Q9. Write a single command to update the value of District for all stations to ‘Dakshina
+Kannada’. Hint: You don’t always need the WHERE clause :)
+
+Update Stations
+set District = 'Dakshina Kannada';
+
+Q10. Write a single command to change both the name of the District column to ‘Dist’ and
+the datatype to char(30).
+
+Alter table Stations
+CHANGE District Dist char(30); 
+
+Q11. Write a command to delete the Dist column.
+
+Alter table Stations drop Dist;
+
+Q12. Write a command to delete the UNIQUE constraint applied on SName in the
+Stations table.
+
+Alter table Stations DROP INDEX Sname;
+
+Q13. Write a command to delete the schedule of the trains having TID as 22000 or
+22001.
+
+Delete from Schedule where TID = 22000 OR TID = 22001;
+
+Q14. Write a query to display the TID of the train having the latest departure time.
+
+select TID from Schedule where Departure = (select MAX( Departure) from Schedule) ;
+
+
+Q15. (Challenge problem) Write a query to display the TName, Source and Destination of
+the train which has the latest departure time. Hint: Nest the query you’ve written for Q9
+inside another query
+
+select TName, Source , Destination from Trains where TID = ( Select TID from Schedule where Departure = (select MAX(Departure) from Schedule));
+
+

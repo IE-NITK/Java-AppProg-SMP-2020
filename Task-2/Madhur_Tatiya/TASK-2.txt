@@ -1,0 +1,130 @@
+Q1. Write the commands you’ll use to create the above three tables, with appropriate
+datatypes (Use the ‘time’ datatype for Departure and Arrival). Also write the commands
+for inserting the data into these tables. (Write 3 CREATE TABLE commands and 17
+INSERT INTO TABLE commands).
+
+Ans 1)	Create DATABASE Train_Schedule;
+	USE Train_Schedule;
+	CREATE TABLE Stations (SID varchar(10) Primary key,Sname varchar(50) UNIQUE);
+	INSERT INTO Stations(SID,Sname)
+	VALUES('MAJN','Manguluru Junction');
+	INSERT INTO Stations(SID,Sname)
+	VALUES('MAQ','Manguluru Central');
+	INSERT INTO Stations(SID,Sname)
+	VALUES('SL','Surathkal');
+
+	CREATE TABLE Trains(TID int(10) Primary Key,TName varchar(50) NOT NULL,Source varchar(10), 			Destination varchar(10),FOREIGN KEY (Source) references Station(Sname),FOREIGN KEY (Destination) 	references Station(Sname));
+	INSERT INTO Trains(TID,TName,Source,Destination)
+	VALUES(22000,'Mangaluru Express','SL','MAQ');
+	INSERT INTO Trains(TID,TName,Source,Destination)
+	VALUES(22001,'Mangaluru Express','MAQ','SL');
+	INSERT INTO Trains(TID,TName,Source,Destination)
+	VALUES(22100,'City Local','MAJN','MAQ');
+	INSERT INTO Trains(TID,TName,Source,Destination)
+	VALUES(22101,'City Local','MAQ','MAJN');
+	INSERT INTO Trains(TID,TName,Source,Destination)
+	VALUES(22200,'City Express','MAJN','MAQ');
+	INSERT INTO Trains(TID,TName,Source,Destination)
+	VALUES(22201,'City Express','MAQ','MAJN');
+
+	CREATE TABLE Schedule(TID int(10),Departure TIME,Arrival TIME,FOREIGN KEY (TID) references 			Trains(TID));
+	INSERT INTO Schedule(TID,Departure,Arrival)
+	VALUES(22000,'09:00:00','09:30:00');
+	INSERT INTO Schedule(TID,Departure,Arrival)
+	VALUES(22000,'12:00:00','12:30:00');
+	INSERT INTO Schedule(TID,Departure,Arrival)
+	VALUES(22001,'10:30:00','11:00:00');
+	INSERT INTO Schedule(TID,Departure,Arrival)
+	VALUES(22001,'13:30:00','14:00:00');
+	INSERT INTO Schedule(TID,Departure,Arrival)
+	VALUES(22100,'15:00:00','15:15:00');
+	INSERT INTO Schedule(TID,Departure,Arrival)
+	VALUES(22101,'16:45:00','17:00:00');
+	INSERT INTO Schedule(TID,Departure,Arrival)
+	VALUES(22200,'18:00:00','18:10:00');
+	INSERT INTO Schedule(TID,Departure,Arrival)
+	VALUES(22201,'19:50:00','20:00:00');
+
+
+Q2. Write a query to display the details (i.e. the TID, TName, Source and Destination) of
+the train with TID 22001.
+
+Ans 2)	SELECT * from Trains
+	WHERE TID = 22001;
+
+Q3. Write a query to display the SName of the stations whose SID begins with ‘MA’.
+	
+Ans 3)	SELECT SName from Stations
+	WHERE SID LIKE 'MA%'; 
+
+Q4. Write a query to display the schedule (i.e. TID, Departure and Arrival) of the trains
+which have departure after 15:30:00 and before 17:00:00.
+
+Ans 4)	SELECT TID,Arrival,Departure from Schedule
+	WHERE Departure>='15:30:00' AND Departure<='17:00:00';
+
+Q5. Write a query to display the TName of the trains whose TName begins with ‘City’ and
+destination is MAQ.
+
+Ans 5)	SELECT Tname from Trains
+	WHERE Destination='MAQ' AND Tname like 'City%';
+
+Q6. Write a command to change the ‘SName’ of the station having ‘SID’ as SL to
+‘Surathkal Station’.
+
+Ans 6)	UPDATE Station
+	SET SName= 'Surathkal Station'
+	WHERE SID='SL';
+
+Q7. Write a command to add a column ‘District’ to the Stations table, with datatype
+varchar(30).
+
+Ans 7)	ALTER TABLE stations
+	ADD District varchar(30) ;
+
+Q8. Write a command to add a DEFAULT constraint to the newly added ‘District’ column.
+Set this default to ‘District404’.
+
+Ans 8) 	ALTER TABLE stations
+	MODIFY District varchar(30) DEFAULT 'District404';
+
+Q9. Write a single command to update the value of District for all stations to ‘Dakshina
+Kannada’. Hint: You don’t always need the WHERE clause :)
+
+Ans 9)	UPDATE Stations
+	SET District='Dakshina Kannada';
+
+Q10. Write a single command to change both the name of the District column to ‘Dist’ and
+the datatype to char(30).
+
+Ans 10)	ALTER TABLE Stations
+	CHANGE District Dist char(30);
+
+Q11. Write a command to delete the Dist column.
+
+Ans 11) ALTER TABLE Stations
+	DROP Dist;
+
+Q12. Write a command to delete the UNIQUE constraint applied on SName in the
+Stations table.
+
+Ans 12)	ALTER TABLE Stations
+	DROP KEY SName;
+
+Q13. Write a command to delete the schedule of the trains having TID as 22000 or
+22001.
+
+Ans 13)	DELETE From Schedule
+	WHERE TID=22000 OR TID=22001;
+
+Q14. Write a query to display the TID of the train having the latest departure time.
+
+Ans 14)	SeLect TID from Schedule 
+	WHERE DEPARTURE=(SELECT MAX(DEPARTURE) FROM Schedule);
+
+Q15. (Challenge problem) Write a query to display the TName, Source and Destination of
+the train which has the latest departure time. Hint: Nest the query you’ve written for Q9
+inside another query :D
+
+Ans 15)	Select Tname,Source,Destination FROM Train 
+	Where TID=(SELECT TID from Schedule where DEPARTURE=(SELECT MAX(DEPARTURE) FROM Schedule));

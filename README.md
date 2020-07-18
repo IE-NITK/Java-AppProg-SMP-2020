@@ -31,18 +31,18 @@ git fetch upstream
 git checkout master
 git merge upstream/master
 ```
-8. Next, enter the Task-1 directory, create a folder with your name, and enter that folder with these commands:
+8. Next, enter the Task-n directory, create a folder with your name, and enter that folder with these commands:
 ```
-cd Task-1
+cd Task-n
 mkdir Name_Surname
 cd Name_Surname
 ```
-9. Using the File Explorer, go inside This PC -> Documents -> NetBeansProjects and copy the folder of the project you've created for Task-1 (e.g. ABC Car Rentals). Paste this folder inside the above Name_Surname folder.
+9. Using the File Explorer, copy the file(s)/folder(s) you've created for Task-n (e.g. ABC Car Rentals or task2.txt) and paste inside the above Name_Surname folder.
 
 10.  Commit the changes to you've made in your local fork by using the following commands:
 ```
 git add .
-git commit -m "Add files for task 1"
+git commit -m "Add files for task n"
 ```
 11. Make your local fork in sync with the original repository by entering the commands in step 7.
 
@@ -50,11 +50,11 @@ git commit -m "Add files for task 1"
 ```
 git push origin master
 ```
-13. Go to your online fork on GitHub. You'll be able to see the changes you've made. Now, if you feel like making some more changes to the files you're submitting for Task 1, repeat steps 8 to 11. Otherwise, if you're ready to submit the files, click the 'Pull request' button (right under the big green 'Clone or download' button).
+13. Go to your online fork on GitHub. You'll be able to see the changes you've made. Now, if you feel like making some more changes to the files you're submitting for Task n, repeat steps 9 to 11. Otherwise, if you're ready to submit the files, click the 'Pull request' button (right under the big green 'Clone or download' button).
 
 14. On the page which opens next, click the big green 'Create pull request' button. Enter a different title if you don't like the one already present, and click the big green 'Create pull request' button.
 
-15. For further task submissions, repeat steps 7 to 14.
+15. For further task submissions, repeat steps 3, 5 and 7 to 14.
 
 #### Mentors
 ```
