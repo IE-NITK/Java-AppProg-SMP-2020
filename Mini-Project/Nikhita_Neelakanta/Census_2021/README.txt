@@ -10,7 +10,7 @@ enumerator:
 | Username | varchar(100) | NO   | PRI | NULL    |       |
 | Password | varchar(100) | YES  |     | NULL    |       |
 +----------+--------------+------+-----+---------+-------+
-NOTE:The application doesn't allow you to create an account, so enter a record using mysql command line tool.
+NOTE:The application doesn't allow you to create an account, so enter a record using mysql command line tool to gain access to the application.
 
 biodata:
 +-------------------+--------------+------+-----+---------+----------------+
