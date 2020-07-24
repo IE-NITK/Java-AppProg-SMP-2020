@@ -1,5 +1,5 @@
 The application uses 2 mysql tables.
-One storing UserId(enumerator) and passwords and the other(biodata) the main data.
+One(enumerator) storing UserId and passwords and the other(biodata) the main data.
 
 Structure of the tables:
 
